@@ -1,0 +1,36 @@
+{
+  "name": "canijs",
+  "version": "0.2.1",
+  "homepage": "http://nikfrank.com/#/works/canijs",
+  "description": "client APIs easy",
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nikfrank/canijs.git"
+  },
+  "keywords": [],
+  "devDependencies": {
+    "mocha": "1.18.2"
+  },
+  "main": "nodemain",
+  "engines": {
+    "node": ">= 0.10.0",
+    "npm": ">= 1.3.0"
+  },
+  "author": {
+    "name": "Nik Frank",
+    "email": "nikbfrank+npm@gmail.com",
+    "url": "http://nikfrank.com/"
+  },
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/nikfrank/lisjp/issues"
+  },
+  "scripts": {},
+  "readmeFilename": "README.md",
+  "gitHead": "3c0825bbcd79c535cd07e686bbe97d499ad3d39b",
+  "readme": "The point of this project is to make a bunch of different APIs and modules exposed by various providers\n(AWS, Google, Facebook, Phonegap, Twitter, Reddit, etc.) work withe same grammar.\n\nThese are mostly client side, however, the AWS sdk runs on node, so I'm working out imports for either.\n\nThis project should be becoming stable in the near future, which is to say chill your balls!\n\n\nquickstart\n---\n\n    npm i canijs\n\nimport q.js\n\nimport cani.js\n\nimport cani-module-mashu.js\n\n    Cani.core.confirm('moduleOrModules').then((mOrMs) => ,,,);\n\nis the way to make sure you have an asset\n\nimport your caniconfig.js file (which has field for each module) a demo of which is available\n\ncaniconfig boots the core and then each module, which triggers callbacks on any confirms waiting\n\nthis is pretty much only useful when confirming a state (ie logged in), which may then trigger \nbooting modules who were waiting for something (ie fbgraph boots on fb [login])\n\nanyhow, you pretty much don't have to think about it much, as long as you \nimport things in the right order and confirm the module before calling anything from it\n\na pattern I use in angular is to put placeholder functions on the scope\n\n    $scope.save = function(){ console.log('module not yet loaded'); };\n\nwhich I replace on confirm\n\n    Cani.core.confirm('idb').then(function(){\n        $scope.save = function(query){ Cani.idb.save(...params).then((res) => ,,,); };\n    });\n\nall calls through Cani are promise based (even synchronous stuff like localStorage)\n\nthat way, if I point window.Q to $q in a .run() module, there's no need to $scope.$apply/$digest\n\nonly after window.Q exists (ie after app.js runs), I import caniconfig.js to boot the cani modules.\n\nThis should be pretty clear in the examples. If it isn't, copy my bad behaviour or pull request.\n\nLook into the example and api folder of each module for more documentation!",
+  "_id": "canijs@0.2.1",
+  "_shasum": "d7f1f24f9cf60a252c9d00fb835bb66acfbdafb0",
+  "_from": "canijs@*"
+}

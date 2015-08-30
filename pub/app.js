@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('cpl', ['ngMaterial', 'ui.router', 'ngStorage', 'xml'])
+    .run(function($q){window.Q = $q;})
     .config(function($stateProvider, $urlRouterProvider){
 
 	$urlRouterProvider.otherwise("/rss/");
@@ -16,4 +17,6 @@ angular.module('cpl', ['ngMaterial', 'ui.router', 'ngStorage', 'xml'])
 		templateUrl:'views/rss.html',
 		controller:'RssCtrl as rss'
 	    });
+
+
   });
